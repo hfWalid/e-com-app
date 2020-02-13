@@ -1,19 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import HomePage from '../src/homepage.component';
+import HomePage from '../src/pages/homepage/homepage.component';
 
-class App extends React.Component {
-  constructor(){
-    super();
-    console.log('Constructor !');
-  }
-
-  render(){
-    return(
-      <HomePage/>
-    )
-  }
-}
+const App = () => (
+  <HomePage></HomePage>
+);
 
 export default App;
