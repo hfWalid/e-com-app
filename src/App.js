@@ -1,10 +1,13 @@
+// Libraries......
 import React from 'react';
-import './App.css';
 
+// Components.....
 import HomePage from '../src/pages/homepage/homepage.component';
 
-const App = () => (
-  <HomePage></HomePage>
-);
+// Stylesheet.....
+import './App.css';
+
+
+const App = () => ( <HomePage/> );
 
 export default App;
