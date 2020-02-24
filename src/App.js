@@ -1,10 +1,12 @@
 // Libraries......
 import React from 'react';
-import {BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components.....
+import Navigbar from './components/navbar/navbar.component';
 import HomePage from '../src/pages/homepage/homepage.component';
 import AboutPage from './pages/aboutpage/about-page.component';
+import ErrorPage from './pages/errorpage/error-page.component';
 
 // Stylesheet.....
 import './App.css';
@@ -12,16 +14,7 @@ import './App.css';
 const App = () => ( 
     <Router>
         <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                    <li>
-                        <Link to='/about'>About</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Navigbar/>
         </div>
         <div>
             <Switch>
@@ -30,6 +23,9 @@ const App = () => (
                 </Route>
                 <Route path='/about'>
                     <AboutPage/>
+                </Route>
+                <Route path='/*'>
+                    <ErrorPage/>
                 </Route>
             </Switch>
         </div>
