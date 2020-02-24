@@ -1,6 +1,9 @@
 footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     border-radius: 6px;
-    border-top: solid #b1b1b1;
+    border-top: lighten($color: #000000, $amount: 0) #b1b1b1;
     background-color: rgb(241, 240, 240);
     font-family: odibee sans;
     font-size: medium;

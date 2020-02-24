@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components.....
 import Navigbar from './components/navbar/navbar.component';
+import Footer from './components/footer/footer.component';
 
 // Nav-Pages......
 import HomePage from '../src/pages/homepage/homepage.component';
@@ -58,6 +59,9 @@ const App = () => (
                     <ErrorPage/>
                 </Route>
             </Switch>
+        </div>
+        <div>
+            <Footer/>
         </div>
     </Router>
 );
