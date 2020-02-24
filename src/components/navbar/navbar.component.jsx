@@ -19,7 +19,7 @@ const Navigbar = () => {
                 <li className="nav-item">
                   <Link to='/shop' className="nav-link">Shop</Link>
                 </li>
-                <div className='navbar-nav'>
+                <div className='navbar-nav mr-auto'>
                   <li className="nav-item">
                     <Link to='/contact' className="nav-link">Contact-Us</Link>
                   </li>
