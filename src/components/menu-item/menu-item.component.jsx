@@ -6,12 +6,13 @@ import React from 'react';
 // Stylesheet.....
 import '../menu-item/menu-item.styles.scss';
 
-
-const MenuItem = ({id, title, imageUrl}) => (
-    <div className='menu-item'>
+//
+const MenuItem = ({id, title, size, imageUrl}) => (
+    <div className={`${size} menu-item`}>
+        <div className='background-image' style={{backgroundImage: `url(${imageUrl})`}}>
+        </div>
         <div className='content'>
             <h1 className='title' key={id}>{title}</h1>
-            
             <span className='subtitle'>Shop Now</span>
         </div>
     </div>
