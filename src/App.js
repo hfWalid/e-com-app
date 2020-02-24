@@ -5,6 +5,11 @@ import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Components.....
 import Navigbar from './components/navbar/navbar.component';
 import HomePage from '../src/pages/homepage/homepage.component';
+import HatsPage from './pages/hatspage/hatspage.component';
+import JacketsPage from './pages/jackets/jackets-page.component';
+import SneakersPage from './pages/sneakers/sneakers-page.component';
+import MenPage from './pages/menpage/men-page.component';
+import WomenPage from './pages/womenpage/women-page.components';
 import AboutPage from './pages/aboutpage/about-page.component';
 import ErrorPage from './pages/errorpage/error-page.component';
 
@@ -20,6 +25,21 @@ const App = () => (
             <Switch>
                 <Route exact path='/'>
                     <HomePage/>
+                </Route>
+                <Route path='/hats'>
+                    <HatsPage/>
+                </Route>
+                <Route path='/jackets'>
+                    <JacketsPage/>
+                </Route>
+                <Route path='/sneakers'>
+                    <SneakersPage/>
+                </Route>
+                <Route path='/mens'>
+                    <MenPage/>
+                </Route>
+                <Route path='/womens'>
+                    <WomenPage/>
                 </Route>
                 <Route path='/about'>
                     <AboutPage/>
