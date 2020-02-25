@@ -1,9 +1,7 @@
 // Libraries......
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-// Data Sources...
-import {auth} from '../src/Firebase/firebase.utils';
+import {auth, createUserProfileDocument} from '../src/Firebase/firebase.utils';
 
 // Components.....
 import Navigbar from './components/navbar/navbar.component';
@@ -34,13 +32,29 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount(){
-        auth.onAuthStateChanged(user => {
-            this.setState({currentUser: user});
+    unsubscribeFromAuth = null
 
-            console.log(user);
-        })
-    }
+    componentDidMount() {
+        this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+          if (userAuth) {
+            const userRef = await createUserProfileDocument(userAuth);
+    
+            userRef.onSnapshot(snapShot => {
+              this.setState({
+                currentUser: {
+                  id: snapShot.id,
+                  ...snapShot.data()
+                }
+              });
+    
+              console.log(this.state);
+            });
+          }
+    
+          this.setState({ currentUser: userAuth });
+        });
+      }
+    
 
     render(){
         return (

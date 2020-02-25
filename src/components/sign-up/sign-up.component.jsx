@@ -1,5 +1,6 @@
 // Libraries....
 import React from 'react';
+import { auth, createUserProfileDocument } from '../../Firebase/firebase.utils';
 
 // Components....
 import CustomButton from '../custom-button/custom-button.component';
@@ -8,64 +9,98 @@ import FormInput from '../form-input/form-input.component';
 // StyleSheet....
 import './sign-up.styles.scss';
 
+
 class SignUp extends React.Component {
-  constructor(props){
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      fullName:'',
-      email:'',
-      password:''
-    }
+      displayName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    };
   }
-  
-  
-  render () {
+
+  handleSubmit = async event => {
+    event.preventDefault();
+
+    const { displayName, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("passwords don't match");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, { displayName });
+
+      this.setState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
+
+  render() {
+    const { displayName, email, password, confirmPassword } = this.state;
     return (
-      <div className="Sign-up">
-        <br/>
-        <h2>Become a customer</h2>
-        <span>Create your account, and start shopping !</span>
-        <form onSubmit={this.handleSubmit}>
+      <div className='sign-up'>
+        <h2 className='title'>Become a member, start Shopping</h2>
+        <span>Sign up with your email and password</span>
+        <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
-            name='full-name'
             type='text'
-            handleChange={this.handleChange}
-            value={this.state.email}
-            label='FullName Here'
+            name='displayName'
+            value={displayName}
+            onChange={this.handleChange}
+            label='Display Name'
             required
           />
           <FormInput
-            name='email'
             type='email'
-            handleChange={this.handleChange}
-            value={this.state.email}
+            name='email'
+            value={email}
+            onChange={this.handleChange}
             label='Email'
             required
           />
           <FormInput
-            name='password'
             type='password'
-            value={this.state.password}
-            handleChange={this.handleChange}
+            name='password'
+            value={password}
+            onChange={this.handleChange}
             label='Password'
             required
           />
           <FormInput
-            name='password'
             type='password'
-            value={this.state.password}
-            handleChange={this.handleChange}
-            label='Repeat Password'
+            name='confirmPassword'
+            value={confirmPassword}
+            onChange={this.handleChange}
+            label='Confirm Password'
             required
           />
-          <CustomButton type='submit'> Sign Up </CustomButton>
+          <CustomButton type='submit'>SIGN UP</CustomButton>
         </form>
       </div>
     );
   }
 }
-
-SignUp.propTypes = {};
 
 export default SignUp;
