@@ -46,7 +46,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Navigbar/>
+                    <Navigbar currentUser={this.state.currentUser}/>
                 </div>
                 <div>
                     <Switch>
