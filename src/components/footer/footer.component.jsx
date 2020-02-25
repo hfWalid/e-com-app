@@ -5,7 +5,7 @@ import React from 'react';
 import './footer.styles.scss';
 
 const Footer = () => (
-    <footer>
+    <footer className="footer">
         Copyright © {(new Date().getFullYear()-1)} - {(new Date().getFullYear())}
     </footer>
 )
