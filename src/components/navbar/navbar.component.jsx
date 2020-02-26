@@ -2,6 +2,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {auth} from '../../Firebase/firebase.utils';
+import {connect} from 'react-redux';
 
 // Components....
 
@@ -42,4 +43,9 @@ const Navigbar = ({currentUser}) => {
     )
 }
 
-export default Navigbar;
+// It maps specific data from the real state to the component's props
+const mapStateToProps = state => ({
+  currentUser : state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Navigbar);
