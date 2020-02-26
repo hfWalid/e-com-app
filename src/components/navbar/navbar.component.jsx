@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Navigbar = ({currentUser}) => {
     return(
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light fixed">
             <Link to='/' className="navbar-brand">HOME</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
@@ -23,7 +23,7 @@ const Navigbar = ({currentUser}) => {
                 </li>
                 <li className="nav-item">
                 {currentUser ? (
-                    <div className='nav-link' onClick={() => auth.signOut()}>SIGN OUT</div>
+                    <Link className='nav-link' onClick={() => auth.signOut()} to='/' >SIGN OUT</Link>
                     ) : (
                     <Link className='nav-link' to='/signinup'>SIGN IN</Link>
                   )}
@@ -44,8 +44,8 @@ const Navigbar = ({currentUser}) => {
 }
 
 // It maps specific data from the real state to the component's props
-const mapStateToProps = state => ({
-  currentUser : state.user.currentUser
+const mapStateToProps = ({user:{currentUser}}) => ({
+  currentUser : currentUser
 })
 
 export default connect(mapStateToProps)(Navigbar);
