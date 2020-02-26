@@ -1,6 +1,6 @@
 // Libraries......
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {auth, createUserProfileDocument} from '../src/Firebase/firebase.utils';
 import {connect} from 'react-redux';
 
@@ -43,7 +43,6 @@ class App extends React.Component {
                   ...snapShot.data()
                 });
             });
-            console.log(userAuth);
             }
         setCurrentUser({ userAuth });
         });
@@ -58,50 +57,61 @@ class App extends React.Component {
                 <div>
                     <Switch>
                     <Route exact path='/'>
-                            <HomePage/>
-                        </Route>
-                        <Route exact path='/shop'>
-                            <ShopPage/>
-                        </Route>
-                        <Route exact path='/signinup'>
-                            <SignInSignUpPage/>
-                        </Route>
-                        <Route path='/hats'>
-                            <HatsPage/>
-                        </Route>
-                        <Route path='/jackets'>
-                            <JacketsPage/>
-                        </Route>
-                        <Route path='/sneakers'>
-                            <SneakersPage/>
-                        </Route>
-                        <Route path='/mens'>
-                            <MenPage/>
-                        </Route>
-                        <Route path='/womens'>
-                            <WomenPage/>
-                        </Route>
-                        <Route path='/contact'>
-                            <ContactPage/>
-                        </Route>
-                        <Route path='/about'>
-                            <AboutPage/>
-                        </Route>
-                        <Route path='/*'>
-                            <ErrorPage/>
-                        </Route>
-                    </Switch>
-                </div>
-                <div>
-                    <Footer/>
-                </div>
-            </Router>
+                        <HomePage/>
+                    </Route>
+                    <Route exact path='/shop'>
+                        <ShopPage/>
+                    </Route>
+                    <Route 
+                        exact 
+                        path='/signinup' 
+                        render ={() => 
+                            this.props.currentUser ? 
+                            (<Redirect to='/' />)
+                            :
+                            (<SignInSignUpPage/>)
+                        }
+                    />
+                    <Route path='/hats'>
+                        <HatsPage/>
+                    </Route>
+                    <Route path='/jackets'>
+                        <JacketsPage/>
+                    </Route>
+                    <Route path='/sneakers'>
+                        <SneakersPage/>
+                    </Route>
+                    <Route path='/mens'>
+                        <MenPage/>
+                    </Route>
+                    <Route path='/womens'>
+                        <WomenPage/>
+                    </Route>
+                    <Route path='/contact'>
+                        <ContactPage/>
+                    </Route>
+                    <Route path='/about'>
+                        <AboutPage/>
+                    </Route>
+                    <Route path='/*'>
+                        <ErrorPage/>
+                    </Route>
+                </Switch>
+            </div>
+            <div>
+                <Footer/>
+            </div>
+        </Router>
         )
     }
 } 
 
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser
+});
+
 const mapDispatchProps = dispatch => ({
     setCurrentUser:user => dispatch(setCurrentUser(user))
-})
+});
 
-export default connect(null, mapDispatchProps)(App);
+export default connect(mapStateToProps, mapDispatchProps)(App);
