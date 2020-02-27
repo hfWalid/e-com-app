@@ -21,7 +21,6 @@ import SneakersPage from './pages/sneakers/sneakers-page.component';
 import MenPage from './pages/menpage/men-page.component';
 import WomenPage from './pages/womenpage/women-page.components';
 import AboutPage from './pages/aboutpage/about-page.component';
-import ContactPage from './pages/contactpage/contact-page.component';
 import ErrorPage from './pages/errorpage/error-page.component';
 
 // Stylesheet.....
@@ -39,13 +38,12 @@ class App extends React.Component {
     
             userRef.onSnapshot(snapShot => {
                 setCurrentUser({
-                  userAuth: snapShot.id,
                   id: snapShot.id,
                   ...snapShot.data()
                 });
             });
             }
-        setCurrentUser({ userAuth });
+        setCurrentUser(null);
         });
     }
     componentWillUnmount(){
@@ -59,16 +57,21 @@ class App extends React.Component {
                 <div>
                     <Switch>
                     <Route exact path='/' component={HomePage} />
-                    <Route exact path='/shop'><ShopPage/></Route>
-                    <Route exact path='/signinup' render={() => this.props.currentUser ? ( <Redirect to='/' /> ) : (<SignInSignUpPage />)}/>
-                    <Route path='/hats'><HatsPage/></Route>
-                    <Route path='/jackets'><JacketsPage/></Route>
-                    <Route path='/sneakers'><SneakersPage/></Route>
-                    <Route path='/mens'><MenPage/></Route>
-                    <Route path='/womens'><WomenPage/></Route>
-                    <Route path='/contact'><ContactPage/></Route>
-                    <Route path='/about'><AboutPage/></Route>
-                    <Route path='/*'><ErrorPage/></Route>
+                    <Route exact path='/shop' component={ShopPage}/>
+                    <Route exact path='/signinup' 
+                        render={() => this.props.currentUser ? 
+                            ( <Redirect to='/' /> ) 
+                            :
+                            (<SignInSignUpPage />)
+                        }
+                    />
+                    <Route path='/hats' component={HatsPage} />
+                    <Route path='/jackets' component={JacketsPage} />
+                    <Route path='/sneakers' component={SneakersPage} />
+                    <Route path='/mens' component={MenPage} />
+                    <Route path='/womens' component={WomenPage} />
+                    <Route path='/about' component={AboutPage} />
+                    <Route path='/*' component={ErrorPage} />
                 </Switch>
             </div>
             <div><Footer/></div>
