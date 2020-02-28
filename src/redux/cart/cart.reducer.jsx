@@ -30,12 +30,12 @@ const cartReducer = (state= INITIAL_STATE, action) => {
         case cartActionsTypes.INC_ITEM:
             return{
                 ...state,
-                cartItems: increaseItemQuantity(state.cartItems, action.payload)
+                cartItems: increaseItemQuantity(state.cartItems, action.id)
             }
         case cartActionsTypes.DEC_ITEM:
             return{
                 ...state,
-                cartItems: decreaseItemQuantity(state.cartItems, action.payload)
+                cartItems: decreaseItemQuantity(state.cartItems, action.id)
             }
         default:
             return state;
