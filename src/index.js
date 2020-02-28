@@ -2,7 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import {store, persistor} from './redux/store';
+
 
 // Components.....
 import App from './App';
@@ -15,6 +18,8 @@ ReactDOM.render(
     //Provider is the parent component that takes the store as props and provide 
     //the global state for each component through the connect method
     <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>, 
 document.getElementById('root'));
