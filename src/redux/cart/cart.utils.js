@@ -16,6 +16,11 @@ export const deleteItemFromCart = (cartItems, cartItemToDeleteId) => {
     return cartItems.filter(cartItem => cartItem.id !== cartItemToDeleteId)
 }
 
-// export const decreaseItemFromCart = (cartItems, cartItemToDecrease) => {
+export const increaseItemQuantity = (cartItems, cartItemToIncrease) => {
+    
+}
 
-// }
+export const decreaseItemQuantity = (cartItems, cartItemToDecrease) => {
+
+}
+

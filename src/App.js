@@ -3,6 +3,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {auth, createUserProfileDocument} from '../src/Firebase/firebase.utils';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 // Components.....
 import Navigbar from './components/navbar/navbar.component';
@@ -15,16 +16,20 @@ import setCurrentUser from './redux/user/user.actions';
 import HomePage from '../src/pages/homepage/homepage.component';
 import ShopPage from '../src/pages/shoppage/shop-page.component';
 import SignInSignUpPage from '../src/pages/signin-and-signup/signin-and-signup.component';
+import CheckoutPage from './pages/checkoutpage/checkout.component';
+
 import HatsPage from './pages/hatspage/hatspage.component';
 import JacketsPage from './pages/jackets/jackets-page.component';
 import SneakersPage from './pages/sneakers/sneakers-page.component';
 import MenPage from './pages/menpage/men-page.component';
 import WomenPage from './pages/womenpage/women-page.components';
+
 import AboutPage from './pages/aboutpage/about-page.component';
 import ErrorPage from './pages/errorpage/error-page.component';
 
 // Stylesheet.....
 import './App.css';
+import { selectCurrentUser } from './redux/user/user.selector';
 
 class App extends React.Component { 
 
@@ -57,7 +62,7 @@ class App extends React.Component {
                 <div>
                     <Switch>
                     <Route exact path='/' component={HomePage} />
-                    <Route exact path='/shop' component={ShopPage}/>
+                    <Route path='/shop' component={ShopPage}/>
                     <Route exact path='/signinup' 
                         render={() => this.props.currentUser ? 
                             ( <Redirect to='/' /> ) 
@@ -65,6 +70,7 @@ class App extends React.Component {
                             (<SignInSignUpPage />)
                         }
                     />
+                    <Route exact path='/checkout' component={CheckoutPage}/>
                     <Route path='/hats' component={HatsPage} />
                     <Route path='/jackets' component={JacketsPage} />
                     <Route path='/sneakers' component={SneakersPage} />
@@ -80,8 +86,8 @@ class App extends React.Component {
     }
 } 
 
-const mapStateToProps = ({ user }) => ({
-    currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
