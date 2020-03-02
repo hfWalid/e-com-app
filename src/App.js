@@ -71,11 +71,11 @@ class App extends React.Component {
                         }
                     />
                     <Route exact path='/checkout' component={CheckoutPage}/>
-                    <Route path='/hats' component={HatsPage} />
-                    <Route path='/jackets' component={JacketsPage} />
-                    <Route path='/sneakers' component={SneakersPage} />
-                    <Route path='/mens' component={MenPage} />
-                    <Route path='/womens' component={WomenPage} />
+                    <Route exact path='/shop/hats' component={HatsPage} />
+                    <Route exact path='/shop/jackets' component={JacketsPage} />
+                    <Route exact path='/shop/sneakers' component={SneakersPage} />
+                    <Route exact path='/shop/mens' component={MenPage} />
+                    <Route exact path='/shop/womens' component={WomenPage} />
                     <Route path='/about' component={AboutPage} />
                     <Route path='/*' component={ErrorPage} />
                 </Switch>

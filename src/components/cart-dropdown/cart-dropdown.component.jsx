@@ -18,7 +18,7 @@ import { createStructuredSelector } from 'reselect';
 const CartDropdown = ({cartItems, history, dispatch}) => {     
     return(
         <div className='cart-dropdown scrollbar scrollbar-primary'>
-            <div className='cart-items'>
+            <div className='cart-items scrollbar scrollbar-primary'>
                 {
                 cartItems.length ?
                 cartItems.map(cartItem => (
