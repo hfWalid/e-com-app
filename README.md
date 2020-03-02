@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Try [Demo version](https://5e5d11f0281b8f5ddd28ca55--amazing-shaw-609697.netlify.com/) on Netlify.
 
 ## Available Scripts
 
