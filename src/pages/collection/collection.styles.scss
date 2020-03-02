@@ -1,19 +1,23 @@
 .collection-page {
     display: flex;
     flex-direction: column;
+    padding: 20px 80px;
   
     .title {
       font-size: 38px;
-      margin: 0 auto 30px;
+      flex: 1;
+      margin: 10 auto 30px;
+      text-align: left;
     }
   
     .items {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: 10px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
   
       & .collection-item {
-        margin-bottom: 30px;
+        margin: 30px;
       }
     }
   }

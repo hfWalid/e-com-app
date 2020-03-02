@@ -18,12 +18,6 @@ import ShopPage from '../src/pages/shoppage/shop-page.component';
 import SignInSignUpPage from '../src/pages/signin-and-signup/signin-and-signup.component';
 import CheckoutPage from './pages/checkoutpage/checkout.component';
 
-import HatsPage from './pages/hatspage/hatspage.component';
-import JacketsPage from './pages/jackets/jackets-page.component';
-import SneakersPage from './pages/sneakers/sneakers-page.component';
-import MenPage from './pages/menpage/men-page.component';
-import WomenPage from './pages/womenpage/women-page.components';
-
 import AboutPage from './pages/aboutpage/about-page.component';
 import ErrorPage from './pages/errorpage/error-page.component';
 
@@ -71,11 +65,6 @@ class App extends React.Component {
                         }
                     />
                     <Route exact path='/checkout' component={CheckoutPage}/>
-                    <Route exact path='/shop/hats' component={HatsPage} />
-                    <Route exact path='/shop/jackets' component={JacketsPage} />
-                    <Route exact path='/shop/sneakers' component={SneakersPage} />
-                    <Route exact path='/shop/mens' component={MenPage} />
-                    <Route exact path='/shop/womens' component={WomenPage} />
                     <Route path='/about' component={AboutPage} />
                     <Route path='/*' component={ErrorPage} />
                 </Switch>
