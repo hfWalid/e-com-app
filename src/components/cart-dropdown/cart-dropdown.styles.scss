@@ -10,20 +10,6 @@
     top: 90px;
     right: 40px;
     z-index: 5;
-    scrollbar-width: thin;
-    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-    --scrollbarBG: #CFD8DC;
-    --thumbBG: #90A4AE;
-
-    -webkit-scrollbar-thumb {
-      background-color: var(--thumbBG) ;
-      border-radius: 6px;
-      border: 3px solid var(--scrollbarBG);
-    }
-
-    -webkit-scrollbar-track {
-      background: var(--scrollbarBG);
-    }
 
     .empty-message {
       font-size: 18px;
@@ -40,4 +26,19 @@
     button {
       margin-top: auto;
     }
+    .scrollbar{
+      scrollbar-width: thin;
+      scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+      --scrollbarBG: #CFD8DC;
+      --thumbBG: #90A4AE;
+    }
+    .scrollbar::-webkit-scrollbar-track {
+      background: var(--scrollbarBG);
+    }
+    .scrollbar-primary::-webkit-scrollbar-thumb {
+      background-color: var(--thumbBG) ;
+      border-radius: 6px;
+      border: 3px solid var(--scrollbarBG);
+    }
+
   }
